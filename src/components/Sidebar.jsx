@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import {gql} from "@apollo/client" 
 import Lesson from "./Lesson";
+import { useState } from "react";
 
 
 
@@ -21,24 +22,40 @@ query {
 
 export default function Sidebar() {
 const {data} = useQuery(GET_LESSONS_QUERY)
+const [lessonType, setLessonType] = useState('Projetos')
+
+const handleChangeButton = () => {
+    if (lessonType === "Projetos") {
+        setLessonType('Especializacao')
+    } else {
+        setLessonType('Projetos')
+    }
+}
+
     return(
 
         <aside className="w-[348px] p-6 border-l border-gray-600 bg-gray-700 ">
                 <span className="font-bold text-2xl pb-6 mb-6 border-b border-gray-500  h-auto block">
-                    Overview de Projetos
-                    </span>
+                    Overview
+                    </span>   
+                    <div className="text-2xl border rounded-full w-28 flex justify-center mb-6">
+                        { lessonType !== 'Projetos' ? <button onClick={handleChangeButton}>Clique para ver as Especialização</button> : <button onClick={handleChangeButton}>Projetos</button>} 
+                    </div>
                     <div className="flex flex-col gap-8">
                         {data?.lessons.map((item) => {
-                            return (
-                                <Lesson key={item.id}
-                                title = {item.title}
-                                slug = {item.slug}
-                                availableAt={new Date(item.availableAt)}
-                                type = {item.lessonType}
-                                />
-
-                            )
-                        })}
+                            if (item.lessonType === lessonType ){
+                                
+                                return (
+                                    <Lesson key={item.id}
+                                    title = {item.title}
+                                    slug = {item.slug}
+                                    availableAt={new Date(item.availableAt)}
+                                    type = {item.lessonType}
+                                    />
+                                    
+                                    )
+                                }
+                                })}
                    
                      
 
