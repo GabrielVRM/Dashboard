@@ -38,8 +38,8 @@ const handleChangeButton = () => {
                 <span className="font-bold text-2xl pb-6 mb-6 border-b border-gray-500  h-auto block">
                     Overview
                     </span>   
-                    <div className="text-2xl border rounded-full w-28 flex justify-center mb-6">
-                        { lessonType !== 'Projetos' ? <button onClick={handleChangeButton}>Clique para ver as Especialização</button> : <button onClick={handleChangeButton}>Projetos</button>} 
+                    <div className="text-lg p-2 border border-blue-300 text-blue-300  rounded-full w-full flex justify-center mb-6">
+                        { lessonType !== 'Projetos' ? <button onClick={handleChangeButton}>Clique para ver Projetos</button> : <button onClick={handleChangeButton}>Clique para ver Especializações</button>} 
                     </div>
                     <div className="flex flex-col gap-8">
                         {data?.lessons.map((item) => {
