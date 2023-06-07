@@ -93,13 +93,13 @@ export default function Video(props) {
             icon={<Notepad size={48} />}
             title="Ideias do projeto"
             iconArrow={<CaretRight size={24} />}
-            link={data.lesson.repositorio}
+            link={data?.lesson?.repositorio}
           />
           <Cards
             icon={<Code size={48} />}
             title="Readme"
             iconArrow={<CaretRight size={24} />}
-            link={data.lesson.repositorio}
+            link={data?.lesson?.repositorio}
 
           />
         </div>
