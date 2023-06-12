@@ -14,6 +14,7 @@ const GET_LESSONS_SLUG = gql`
       repositorio
       lessonType
       description
+      subtitle
       gabriel {
         bio
         name
@@ -38,20 +39,23 @@ export default function Video(props) {
   return (
     <div className="flex-1">
       <div className="bg-black flex justify-center">
-        <div className="h-full w-full max-w-[1100px] max-h-[60vh] aspect-video  ">
-          <iframe
+        <div className="h-full w-full max-w-[1100px] max-h-[60vh] aspect-video flex items-center justify-center ">
+      { data.lesson.videoId ? <iframe
             className="iframe "
             src={data?.lesson?.videoId}
             height="500px"
             scrolling="no"
-          />
+          /> 
+          : 
+          <div className="flex justify-center items-center">
+          <h1 className="text-6xl font-light flex ">{data?.lesson?.title}</h1>
+          </div>
+          }
         </div>
       </div>
       <div className="p-8 max-w-[1100px] mx-auto">
         <div className="flex items-start gap-16">
           <div className="flex-1">
-            <h1 className="text-2xl font-bold">{data?.lesson?.title}</h1>
-            <p className="mt-4 text-gray-200">{data?.lesson?.description}</p>
             <div className="flex items-center gap-4 mt-6">
               <img
                 className="h-16 w-16 rounded-full border-2 border-blue-500"
@@ -66,8 +70,10 @@ export default function Video(props) {
             </div>
           </div>
           <div className="flex flex-col gap-4 ">
+            
             {data?.lesson?.lessonType === "Projetos" ? 
               <div  className="flex flex-col gap-4 " >
+                
                 <Button
                   title="Acessar o Projeto"
                   icon={<GithubLogo />}
@@ -87,6 +93,12 @@ export default function Video(props) {
               />
             }
           </div>
+        </div>
+        <div className="flex justify-center items-center flex-col">
+        <h1 className="text-2xl font-bold">{data?.lesson?.title}</h1>
+        <p className="mt-4 text-gray-200">{data?.lesson?.subtitle}</p>
+        <p className="mt-4 text-gray-200">{data?.lesson?.description}</p>
+
         </div>
         <div className="gap-8 mt-20 grid grid-cols-2">
           <Cards

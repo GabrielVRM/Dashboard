@@ -12,8 +12,8 @@ export default function Home() {
 
 
        <div className=' flex justify-center items-center '>
-<div className=' block  p-8 bg-slate-100 border border-range-500 rounded'>
-    <strong className='text-gray-900' > 
+<div className=' block  p-8 bg-transparent  border-range-500 border rounded-full'>
+    <strong className='text-white text-xl' > 
         Acessar o conteudo da Dashboard  
     <Link to={`/event`} className='flex justify-center cursor-pointer m-auto'>
         Clique aqui 
