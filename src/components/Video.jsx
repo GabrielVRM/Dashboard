@@ -38,17 +38,17 @@ export default function Video(props) {
   }
   return (
     <div className="flex-1">
-      <div className="bg-black flex justify-center">
+      <div className="flex justify-center bg-black">
         <div className="h-full w-full max-w-[1100px] max-h-[60vh] aspect-video flex items-center justify-center ">
-      { data.lesson.videoId ? <iframe
+      { data?.lesson?.videoId ? <iframe
             className="iframe "
             src={data?.lesson?.videoId}
             height="500px"
             scrolling="no"
           /> 
           : 
-          <div className="flex justify-center items-center">
-          <h1 className="text-6xl font-light flex ">{data?.lesson?.title}</h1>
+          <div className="flex items-center justify-center">
+          <h1 className="flex text-6xl font-light ">{data?.lesson?.title}</h1>
           </div>
           }
         </div>
@@ -58,11 +58,11 @@ export default function Video(props) {
           <div className="flex-1">
             <div className="flex items-center gap-4 mt-6">
               <img
-                className="h-16 w-16 rounded-full border-2 border-blue-500"
+                className="w-16 h-16 border-2 border-blue-500 rounded-full"
                 src="https://avatars.githubusercontent.com/u/95998556?v=4"
               ></img>
               <div className="flex flex-col items-center leading-relaxed ">
-                <strong className="font-bold text-2xl">
+                <strong className="text-2xl font-bold">
                   {data?.lesson?.gabriel?.name}
                 </strong>
                 <span className="text-gray-400">Developer</span>
@@ -94,27 +94,40 @@ export default function Video(props) {
             }
           </div>
         </div>
-        <div className="flex justify-center items-center flex-col">
+        <div className="flex flex-col items-center justify-center">
         <h1 className="text-2xl font-bold">{data?.lesson?.title}</h1>
         <p className="mt-4 text-gray-200">{data?.lesson?.subtitle}</p>
         <p className="mt-4 text-gray-200">{data?.lesson?.description}</p>
 
         </div>
-        <div className="gap-8 mt-20 grid grid-cols-2">
+       {data?.lesson?.lessonType === "Projetos" ? 
+       <div className="grid grid-cols-2 gap-8 mt-20">
           <Cards
             icon={<Notepad size={48} />}
             title="Ideias do projeto"
             iconArrow={<CaretRight size={24} />}
             link={data?.lesson?.repositorio}
           />
-          <Cards
+          <Cards 
             icon={<Code size={48} />}
             title="Readme"
             iconArrow={<CaretRight size={24} />}
             link={data?.lesson?.repositorio}
 
           />
-        </div>
+                  </div>
+          : 
+          <div className="grid grid-cols-1 gap-8 mt-20 " >
+            <Cards 
+            icon={<Code size={48} />}
+            title="Aprendizado "
+            iconArrow={<CaretRight size={24} />}
+            link={data?.lesson?.repositorio}
+            color="bg-zinc-100"
+
+          />
+            </div>
+          } 
       </div>
     </div>
   );

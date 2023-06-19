@@ -42,7 +42,7 @@ const handleChangeButton = () => {
                         { lessonType !== 'Projetos' ? <button onClick={handleChangeButton}>Clique para ver Projetos</button> : <button onClick={handleChangeButton}>Clique para ver Especializações</button>} 
                     </div>
                     <div className="flex flex-col gap-8">
-                        {data?.lessons.map((item) => {
+                        { data?.lessons?.map((item) => {
                             if (item.lessonType === lessonType ){
                                 
                                 return (
