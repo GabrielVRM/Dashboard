@@ -21,21 +21,27 @@ const GET_LESSONS_SLUG = gql`
       }
     }
   }
+
 `;
 
+
 export default function Video(props) {
-  const { data } = useQuery(GET_LESSONS_SLUG, {
-    variables: {
-      slug: props.lessonSlug,
-    },
-  });
-  if (!data) {
-    return (
-      <div className="flex-1">
+    const { data } = useQuery(GET_LESSONS_SLUG, {
+      variables: {
+        slug: props.lessonSlug,
+      }, 
+    })
+    
+    if (!data) {
+      return (
+        <div className="flex-1">
         <p>Carregando...</p>
       </div>
     );
   }
+  
+
+
   return (
     <div className="flex-1">
       <div className="flex justify-center bg-black">
@@ -83,7 +89,7 @@ export default function Video(props) {
                   title="Acessar o Repositorio"
                   icon={<Code />}
                   link={data?.lesson?.repositorio}
-                />
+                  />
               </div>
               : 
               <Button
@@ -123,7 +129,6 @@ export default function Video(props) {
             title="Aprendizado "
             iconArrow={<CaretRight size={24} />}
             link={data?.lesson?.repositorio}
-            color="bg-zinc-100"
 
           />
             </div>
@@ -131,4 +136,5 @@ export default function Video(props) {
       </div>
     </div>
   );
+
 }
