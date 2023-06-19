@@ -1,8 +1,7 @@
 import { useQuery } from "@apollo/client";
 import {gql} from "@apollo/client" 
 import Lesson from "./Lesson";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 
 
 const GET_LESSONS_QUERY = gql`

@@ -4,7 +4,7 @@ import { Button } from "./Button";
 import { Cards } from "./Cards";
 import { useQuery } from "@apollo/client";
 import { gql } from "@apollo/client";
-
+import { useEffect } from "react";
 const GET_LESSONS_SLUG = gql`
   query ($slug: String) {
     lesson(where: { slug: $slug }) {
@@ -21,26 +21,32 @@ const GET_LESSONS_SLUG = gql`
       }
     }
   }
+
 `;
 
+
 export default function Video(props) {
-  const { data } = useQuery(GET_LESSONS_SLUG, {
-    variables: {
-      slug: props.lessonSlug,
-    },
-  });
-  if (!data) {
-    return (
-      <div className="flex-1">
+    const { data } = useQuery(GET_LESSONS_SLUG, {
+      variables: {
+        slug: props.lessonSlug,
+      }, 
+    })
+    
+    if (!data) {
+      return (
+        <div className="flex-1">
         <p>Carregando...</p>
       </div>
     );
   }
+  
+
+
   return (
     <div className="flex-1">
       <div className="bg-black flex justify-center">
         <div className="h-full w-full max-w-[1100px] max-h-[60vh] aspect-video flex items-center justify-center ">
-      { data.lesson.videoId ? <iframe
+      { data?.lesson.videoId ? <iframe
             className="iframe "
             src={data?.lesson?.videoId}
             height="500px"
@@ -83,7 +89,7 @@ export default function Video(props) {
                   title="Acessar o Repositorio"
                   icon={<Code />}
                   link={data?.lesson?.repositorio}
-                />
+                  />
               </div>
               : 
               <Button
@@ -112,10 +118,11 @@ export default function Video(props) {
             title="Readme"
             iconArrow={<CaretRight size={24} />}
             link={data?.lesson?.repositorio}
-
-          />
+            
+            />
         </div>
       </div>
     </div>
   );
+
 }
