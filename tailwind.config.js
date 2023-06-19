@@ -1,24 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-'./src/**/*.jsx'
-  ],
+  content: ["./src/**/*.jsx"],
   theme: {
     extend: {
-      backgroundImage:{
-bluer:'url(../assets/abstract.png)'
+      backgroundImage: {
+        bluer: "url(../assets/abstract.png)",
       },
-      fontFamily:{
-        sans: 'Roboto, sans-serif'
+      fontFamily: {
+        sans: "Roboto, sans-serif",
       },
-      colors:{
-        gray:{
-          700: '#121214',
-          900: '#09090a'
-        }
-      }
+      colors: {
+        gray: {
+          700: "#121214",
+          900: "#09090a",
+        },
+      },
     },
   },
-  plugins: [],
-}
 
+  plugins: [],
+};
