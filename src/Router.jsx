@@ -4,8 +4,8 @@ export default function RouterReact() {
   return (
     <Router>
     <Routes>
-      <Route path="/event" element={<Event />} />
-      <Route path="/event/lesson/:slug" element={<Event />} />
+      <Route path="/" element={<Event />} />
+      <Route path="event/lesson/:slug" element={<Event />} />
     </Routes>
   </Router>
   );
